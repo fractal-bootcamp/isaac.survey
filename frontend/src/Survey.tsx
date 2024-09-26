@@ -8,6 +8,7 @@ function Survey() {
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
     const [messages, setMessages] = useState([])
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const onFormSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
         const res = await axios.post(SERVER_URL, { name, age })
@@ -20,6 +21,16 @@ function Survey() {
             const res = await axios.get(SERVER_URL + '/results')
             const messages = res.data
             setMessages(res.data)
+
+            setIsSubmitted(true)
+
+            // Set a timer to hide the success message after 3 seconds
+            setTimeout(() => {
+                setIsSubmitted(false)
+            }, 3000)
+
+
+
         }
         fetch();
     }, [])
@@ -34,6 +45,7 @@ function Survey() {
                 <input value={age} onChange={(e) => setAge(e.target.value)} name="age" />
                 <button type="submit">submit survey</button>
             </form>
+            {isSubmitted && <div>Form submitted successfully!</div>} {/* Success message */}
             <div>
                 {JSON.stringify(messages)}
             </div>
