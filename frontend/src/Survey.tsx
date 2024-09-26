@@ -24,13 +24,9 @@ function Survey() {
 
             setIsSubmitted(true)
 
-            // Set a timer to hide the success message after 3 seconds
             setTimeout(() => {
                 setIsSubmitted(false)
             }, 3000)
-
-
-
         }
         fetch();
     }, [])
@@ -45,7 +41,7 @@ function Survey() {
                 <input value={age} onChange={(e) => setAge(e.target.value)} name="age" />
                 <button type="submit">submit survey</button>
             </form>
-            {isSubmitted && <div>Form submitted successfully!</div>} {/* Success message */}
+            {isSubmitted && <div>Form submitted successfully!</div>}
             <div>
                 {JSON.stringify(messages)}
             </div>
