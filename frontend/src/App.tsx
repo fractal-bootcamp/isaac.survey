@@ -2,17 +2,20 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
 import Survey from './Survey'
-
+import { log } from 'console';
+import Results from './Results';
 
 
 function App() {
+
+  const [name, setName] = useState('');
 
   return (
     <>
       <form action="/my-handling-form-page" method="post">
         <p>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="user_name" onChange={(e) => handleChanges(e)} />
+          <input type="text" id="name" name="user_name" onChange={(e) => setName(e.target.value)} />
         </p>
         <p>
           <label for="mail">Email:</label>
@@ -26,7 +29,7 @@ function App() {
       <p className="button">
         <button type="submit">Send</button>
       </p>
-      {/* <Messages /> */}
+      <Survey />
     </>
   )
 }
