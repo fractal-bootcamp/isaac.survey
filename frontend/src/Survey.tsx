@@ -27,10 +27,11 @@ export type SurveyType = {
 
 function Answer({ answer }: { answer: AnswerType }) {
     return (
-        <div>{answer.id}: {answer.value}</div>
+        <div className="answer">
+            {answer.id}: {answer.value}
+        </div>
     )
 }
-
 function Question({ question, mode }: { question: QuestionType, mode: 'answer' | 'edit' | 'view' }) {
 
     if (mode === 'view') {
@@ -52,10 +53,9 @@ function Question({ question, mode }: { question: QuestionType, mode: 'answer' |
 }
 
 function Survey({ survey, mode }: { survey: SurveyType, mode: 'answer' | 'edit' | 'view' }) {
-
     return (
         <div>
-            {survey.name}
+            <div className="survey-name">{survey.name}</div>
             {survey.questions.map(
                 (question) => {
                     return <Question question={question} mode={mode} />

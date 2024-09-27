@@ -60,6 +60,16 @@ app.post("/", async (req, res) => {
   res.sendStatus(200);
 });
 
+app.get("/api/responses", async (req, res) => {
+  try {
+    const responses = await prisma.responses.findMany();
+    res.json(responses);
+  } catch (error) {
+    console.error("Error fetching responses:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
