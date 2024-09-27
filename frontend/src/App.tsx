@@ -1,9 +1,54 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios'
-import Survey from './Survey'
-import { log } from 'console';
-import Results from './Results';
+import OldSurvey from './OldSurvey'
+import Survey, { QuestionType, SurveyType } from './Survey';
+
+const exampleQuestions: QuestionType[] = [{
+  id: 1,
+  name: 'what is your age?',
+  surveyId: 1,
+  answers: [
+    {
+      id: 1,
+      questionId: 1,
+      value: '178',
+    },
+    {
+      id: 2,
+      questionId: 1,
+      value: '67',
+    },
+  ],
+},
+{
+  id: 2,
+  name: 'what is your name?',
+  surveyId: 1,
+  answers: [
+    {
+      id: 1,
+      questionId: 1,
+      value: 'fred',
+    },
+    {
+      id: 2,
+      questionId: 1,
+      value: 'melinda',
+    },
+  ],
+}
+]
+
+
+
+
+const exampleSurvey: SurveyType = {
+  id: 1,
+  name: 'Example Survey',
+  questions: exampleQuestions,
+  responses: [],
+}
 
 
 function App() {
@@ -12,24 +57,7 @@ function App() {
 
   return (
     <>
-      <form action="/my-handling-form-page" method="post">
-        <p>
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="user_name" onChange={(e) => setName(e.target.value)} />
-        </p>
-        <p>
-          <label for="mail">Email:</label>
-          <input type="email" id="mail" name="user_email" />
-        </p>
-        <p>
-          <label for="msg">Message:</label>
-          <textarea id="msg" name="user_message"></textarea>
-        </p>
-      </form>
-      <p className="button">
-        <button type="submit">Send</button>
-      </p>
-      <Survey />
+      <Survey survey={exampleSurvey} />
     </>
   )
 }
