@@ -40,9 +40,6 @@ const exampleQuestions: QuestionType[] = [{
 }
 ]
 
-
-
-
 const exampleSurvey: SurveyType = {
   id: 1,
   name: 'Example Survey',
@@ -50,10 +47,18 @@ const exampleSurvey: SurveyType = {
   responses: [],
 }
 
-
 function App() {
-
   const [name, setName] = useState('');
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api/responses')
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <>
